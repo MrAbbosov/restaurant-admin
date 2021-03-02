@@ -31,6 +31,8 @@
 .stat-list {
   margin: 0;
   padding: 0;
+  margin-left: -10px;
+  margin-right: -10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,6 +43,7 @@
   width: 270px;
   background: #1F1D2B;
   border-radius: 8px;
+  margin: 0 10px;
   padding: 10px;
 }
 
@@ -68,8 +71,61 @@
 }
 
 .list-item-bottom {
-  margin: 0;
-  margin-top: 6px;
+  margin: 6px 0;
   color: #ABBBC2;
   font-size: 18px;
+}
+
+.orders_page-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.most-ordered {
+  width: 100%;
+  background: #1F1D2B;
+  border-radius: 8px;
+  margin-left: 24px;
+  padding: 12px;
+}
+
+.most-ordered-heading-top {
+  margin: 0;
+  font-size: 22px;
+}
+
+.most-ordered-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.most-ordered-item {
+  display: flex;
+}
+.most-ordered-item:first-child {
+  margin-bottom: 12px;
+}
+
+.most-ordered-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+
+.most-ordered-heading {
+  max-width: 220px;
+  margin: 0;
+  font-size: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #F6CE4E;
+}
+
+.most-ordered-subheading {
+  margin: 0;
+  font-size: 16px;
 }
