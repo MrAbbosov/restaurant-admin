@@ -1,0 +1,68 @@
+
+.orders-page {
+  width: 100%;
+  padding: 24px;
+  color: white;
+}
+
+
+.orders_page-headings {
+  width: 70%;
+}
+
+.orders_page-heading {
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+}
+
+.orders_page-sub_heading {
+  color: #E0E6E9;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.orders_line {
+  border: 1px solid #173BD6;
+  margin: 10px 0;
+  
+}
+
+.stat-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.stat-list-item {
+  width: 270px;
+  background: #1F1D2B;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.list-item-top {
+  display: flex;
+  align-items: center;
+}
+
+.list-item-img-wrapper {
+  padding: 7px;
+  background: #252836;
+  border-radius: 8px;
+  margin-right: 6px;
+}
+
+.list-item-img {
+  vertical-align: middle;
+}
+
+.list-item-number {
+  margin: 0;
+  font-weight: 600;
+font-size: 20px;
+  color: #50D1AA;
+}
