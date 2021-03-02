@@ -53,7 +53,7 @@
   padding: 7px;
   background: #252836;
   border-radius: 8px;
-  margin-right: 6px;
+  margin-right: 12px;
 }
 
 .list-item-img {
@@ -63,6 +63,13 @@
 .list-item-number {
   margin: 0;
   font-weight: 600;
-font-size: 20px;
-  color: #50D1AA;
+  font-size: 20px;
+  color: #F6CE4E;
+}
+
+.list-item-bottom {
+  margin: 0;
+  margin-top: 6px;
+  color: #ABBBC2;
+  font-size: 18px;
 }
