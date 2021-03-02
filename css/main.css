@@ -394,6 +394,8 @@ img {
 }
 
 .site_body {
+  padding-left: 100px;
+  position: relative;
   background-color: #252836;
 }
 
@@ -417,6 +419,9 @@ img {
 }
 
 .side_nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -540,5 +545,114 @@ img {
 
 .nav_list-item-active .item-img {
   fill: #fff;
+}
+
+.main_page-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main_page-heading {
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+}
+
+.main_page-sub_heading {
+  color: #E0E6E9;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.main_search-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid #173BD6;
+  border-radius: 8px;
+}
+
+.dishes-heading {
+  font-size: 20px;
+  margin: 34px 0 68px 0;
+}
+
+.dishes-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style-type: none;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.dish-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  padding: 24px;
+  padding-top: 0;
+  margin: 0 14px 58px 14px;
+  width: 200px;
+  background: #1F1D2B;
+  border-radius: 16px;
+}
+
+.dish-img {
+  margin-top: -34px;
+  vertical-align: middle;
+}
+
+.dish-name {
+  font-size: 14px;
+  line-height: 130%;
+  margin: 0;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.dish-price {
+  font-weight: normal;
+  line-height: 140%;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.dish-avaible {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+  margin: 0;
 }
 /*# sourceMappingURL=main.css.map */

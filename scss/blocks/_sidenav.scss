@@ -1,12 +1,14 @@
 .site_body{
+  padding-left: 100px;
+  position: relative;
   background-color: #252836;
 }
 
 .body_wrapper {
   margin: 0;
-display: flex;
-align-items: flex-start;
-justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .main-page {
@@ -16,6 +18,9 @@ justify-content: center;
 }
 
 .side_nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -35,7 +40,7 @@ justify-content: center;
   box-shadow: 0px 0px 15px #FFFFFF;
 }
 .site_logo-link{
-padding: 12px;
+  padding: 12px;
 }
 
 .nav_list{
@@ -60,7 +65,7 @@ padding: 12px;
 
 
 .item-img{
-   vertical-align: middle;
+  vertical-align: middle;
 }
 
 .item-link {
@@ -77,7 +82,7 @@ padding: 12px;
   outline: none;
 }
 .item-img{
- fill: #F7CE4E;
+  fill: #F7CE4E;
 }
 
 .nav_list-item:hover .item-link {
@@ -85,19 +90,46 @@ padding: 12px;
   box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.32);
   transition: 0.5s all ease;
   .item-img{
-   fill: #fff;
+    fill: #fff;
   }
 }
 
 .nav_list-item-active {
   background: #252836;
-
+  
   .item-link {
     background: #F7CE4E;
     box-shadow: 0px 8px 24px rgba(234, 124, 105, 0.32);
     transition: 0.5s all ease;
   }
   .item-img{
-   fill: #fff;
+    fill: #fff;
   }
+}
+
+// HOMEPAGE
+.main_page-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main_page-heading {
+  font-weight: 600;
+  font-size: 28px;
+  margin: 0;
+}
+
+.main_page-sub_heading {
+  color: #E0E6E9;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.main_search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #173BD6;
+  border-radius: 8px;
 }
