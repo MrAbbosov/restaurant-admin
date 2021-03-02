@@ -5,7 +5,6 @@
 
 .dishes-list {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
   margin: 0;
   padding: 0;
@@ -27,6 +26,11 @@
   width: 200px;
   background: #1F1D2B;
   border-radius: 16px;
+  transition: 0.3s all ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
 }
 
 .dish-img {
@@ -44,15 +48,15 @@
 
 .dish-price {
   font-weight: normal;
-  // font-size: 14px;
   line-height: 140%;
   margin: 0;
+  margin-top: auto;
   margin-bottom: 4px;
 }
 
 .dish-avaible {
   font-weight: normal;
-font-size: 14px;
-line-height: 140%;
-margin: 0;
+  font-size: 14px;
+  line-height: 140%;
+  margin: 0;
 }

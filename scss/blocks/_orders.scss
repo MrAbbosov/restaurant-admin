@@ -1,7 +1,10 @@
 
 .orders-page {
-  width: 100%;
+  // width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 24px;
+  padding-bottom: 12px;
   color: white;
 }
 
@@ -128,4 +131,52 @@
 .most-ordered-subheading {
   margin: 0;
   font-size: 16px;
+}
+
+.orders_page-bottom {
+  display: block;
+  padding: 0 40px;
+}
+
+.order-table {
+  width: 100%;
+  background: #1F1D2B;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.thead-light {
+  background: #2f0b39;
+  color: #F6CE4E;
+}
+.tbody-light {
+  color: #fff
+
+}
+
+.col-1 {
+  width: 6%;
+}
+
+.col-2 {
+  width: 12%;
+}
+
+.col-3 {
+  width: 18%;
+}
+.col-4 {
+  width: 12%;
+}
+.col-5 {
+  width: 15%;
+}
+
+.tbody-light {
+  display: block;
+  padding: 300px;
+}
+
+.table-body {
+  background-color: #d6bcbc;
 }
