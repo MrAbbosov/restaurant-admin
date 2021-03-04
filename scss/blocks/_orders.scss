@@ -141,27 +141,33 @@
 .order-table {
   width: 100%;
   background: #1F1D2B;
+  border-collapse: collapse;
+  overflow: hidden;
   border-radius: 8px;
   text-align: center;
 }
 
 .thead-light {
-  background: #2f0b39;
-  color: #F6CE4E;
+  color: #fff;
 }
+
+.thead-light tr  {
+  border-bottom:  2px solid #173BD6;
+}
+.thead-light th  {
+  padding: 8px 0;
+}
+
 .tbody-light {
   color: #fff
-
 }
 
 .col-1 {
-  width: 6%;
+  width: 4%;
 }
-
 .col-2 {
   width: 12%;
 }
-
 .col-3 {
   width: 18%;
 }
@@ -172,11 +178,61 @@
   width: 15%;
 }
 
-.tbody-light {
-  display: block;
-  padding: 300px;
+.table-body td {
+  font-weight: bold;
+  line-height: 25px;
+  color: #fff;
+  padding: 0;
 }
 
-.table-body {
-  background-color: #d6bcbc;
+.location-link{
+  display: block;
+  text-decoration: none;
+  background-color: #F6CE4E;
+  padding: 10px 5px;
+  border: none;
+  outline: none;
+  transition: 0.3s all ease;
+  
+  &:hover{
+    background-color: #f0ac1b;
+    color: #fff;
+  }
+}
+
+.status-button {
+  background: none;
+  border: none;
+  line-height: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 5px;
+  background-color: #0572ee;
+  color: #fff;
+  width: 100%;
+  transition: 0.3s all ease;
+  
+  &:hover {
+    background-color: #3328d1;
+  }
+  
+  &:focus{
+    outline: none;
+  }
+}
+
+.status-pending {
+  background-color: #fb6a16;
+ 
+  &:hover {
+    background-color: #c8461f;
+  }
+}
+
+.status-compleated {
+  background-color: #3eb62e;
+ 
+  &:hover {
+    background-color: #069506;
+  }
 }
