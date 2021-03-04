@@ -74,6 +74,7 @@
         <div class="orders_page-headings">
             <h2 class="orders_page-heading">"Ajwa" taomlari</h2>
             <p class="orders_page-sub_heading">Tuesday, 2 Feb 2021</p>
+            <button class="refresh-btn">Qabul</button>
             <hr class="orders_line">
 
             <div class="orders_statistics">
@@ -84,8 +85,8 @@
                       <img class="list-item-img" src="img/Coin.png" alt="Dollar" width="24" height="24">
                     </div>
 
-                    <div class="list-item-number js-statistics-price">
-                      150,000,000 so'm
+                    <div class="list-item-number ">
+                      <span class="js-statistics-price">0</span> so'm
                     </div>
                   </div>
                   <div class="list-item-bottom">
@@ -175,15 +176,15 @@
           </tr>
         </thead>
 
-        <tbody class="table-body">
+        <tbody class="table-body row-body">
           <tr>
-            <td id="user_id">
+            <td>
               1
             </td>
             <td>
               24.02.2021 10:02
             </td>
-            <td class="font-weight-bold">
+            <td >
               Usmon
             </td>
             <td>
@@ -196,7 +197,7 @@
               2
             </td>
             <td>
-              <span class="product_price">
+              <span>
                 24000
               </span>
               so'm
@@ -220,10 +221,24 @@
     
   </div>
 
+
+  <template id="row">
+    <tr>
+      <td class="js-user-id"></td>
+      <td class="js-date"></td>
+      <td class="js-client-username"></td>
+      <td class="js-client-phone-number"></td>
+      <td class="js-product-name"></td>
+      <td class="js-quantity"></td>
+      <td class="js-product-price"></td>
+      <td class="js-price-summ"></td>
+      <td><a target="blank" class="location-link js-location-link">Map</a></td>
+      <td><button class="status-button  js-order-confirm">Qabul</button></td>
+    </tr>  
+  </template>
   
   
-  
-  
+  <script src="./js/moment.js"></script> 
   <script src="js/main.js"></script>
 </body>
 </html>

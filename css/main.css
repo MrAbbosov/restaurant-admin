@@ -870,6 +870,7 @@ img {
   line-height: 25px;
   color: #fff;
   padding: 0;
+  border-bottom: 2px solid #173BD6;
 }
 
 .location-link {
