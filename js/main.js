@@ -13,22 +13,18 @@ elRefreshBtn.addEventListener('click', async function (evt) {
   evt.preventDefault();
   
   const res = await fetch('http://192.168.1.22:4002/admin/orders')
-  const resonse = await res.json()
-  console.log(resonse)
-
+  const response = await res.json()
   elRowList.innerHTML = '';
   elStatPrice.innerHTML = '';
   elStatNumSets.innerHTML = '';
-  elStatAllCustomers.innerHTML = '';
 
   let listFragment = document.createDocumentFragment();
 
   let statPrice = 0
   let statSetNums = 0
-  let elStatAllCustomers = 0
-  
 
-  resonse.data.forEach((order) => {
+  response.data.forEach((order) => {
+
     let elOrderItem = elTemplate.cloneNode(true);
 
     statPrice += order.product_price * order.sale_product_count;
