@@ -9,30 +9,9 @@ let $_ = function(selector, node = document) {
   return node.querySelector(selector);
 }
 
-// elRefreshBtn.addEventListener('click', async function (evt) {
-//   evt.preventDefault();
-;(async () => {
-  const socket = await io(CONFIG.PORT, { transports: ['websocket'] })
+const fetchAllData = async (CONFIG) => {
 
-  /*SOCKET*/
-
-  socket.on('new_product', data => {
-
-    if(data.sale_id > 0) {
-      console.log(data)
-
-      //fetchni shu yerda qilasiz
-    }
-  
-  })
-
-  socket.on('new_order', data => {
-    console.log(data)
-  })
-
-  /*END OF SOCKET*/
-
-  const res = await fetch(`${CONFIG.PORT}/admin/orders`)
+  const res = await fetch(`${CONFIG.HOST}/admin/orders`)
   const response = await res.json()
 
   elRowList.innerHTML = '';
@@ -69,5 +48,31 @@ let $_ = function(selector, node = document) {
   elStatNumSets.textContent = statSetNums.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
 
   elRowList.appendChild(listFragment);
+
+} 
+
+const salom = (info) => {
+  console.log(info);
+}
+
+;(async () => {
+  const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
+
+  fetchAllData(CONFIG)
+
+  /*SOCKET*/
+
+  socket.on('new_order', data => {
+      try{
+        fetchAllData(CONFIG)
+      }
+      catch(e) {
+        console.log(e);
+      }
+  })
+
+  /*END OF SOCKET*/
+
+
 })()
-// });
+
