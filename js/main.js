@@ -9,11 +9,32 @@ let $_ = function(selector, node = document) {
   return node.querySelector(selector);
 }
 
-elRefreshBtn.addEventListener('click', async function (evt) {
-  evt.preventDefault();
+// elRefreshBtn.addEventListener('click', async function (evt) {
+//   evt.preventDefault();
+;(async () => {
+  const socket = await io(CONFIG.PORT, { transports: ['websocket'] })
+
+  /*SOCKET*/
+
+  socket.on('new_product', data => {
+
+    if(data.sale_id > 0) {
+      console.log(data)
+
+      //fetchni shu yerda qilasiz
+    }
   
-  const res = await fetch('http://192.168.1.22:4002/admin/orders')
+  })
+
+  socket.on('new_order', data => {
+    console.log(data)
+  })
+
+  /*END OF SOCKET*/
+
+  const res = await fetch(`${CONFIG.PORT}/admin/orders`)
   const response = await res.json()
+
   elRowList.innerHTML = '';
   elStatPrice.innerHTML = '';
   elStatNumSets.innerHTML = '';
@@ -32,7 +53,7 @@ elRefreshBtn.addEventListener('click', async function (evt) {
 
 
     $_('.js-user-id', elOrderItem).textContent = order.sale_id;
-    $_('.js-date', elOrderItem).textContent = moment(order.sale_date).format('LL');
+    $_('.js-date', elOrderItem).textContent = moment(order.sale_date).format('MM.DD h:mm:ss a');
     $_('.js-client-username', elOrderItem).textContent = order.tg_first_name;
     $_('.js-client-phone-number', elOrderItem).textContent = order.tg_phone;
     $_('.js-product-name', elOrderItem).textContent = order.product_name;
@@ -48,4 +69,5 @@ elRefreshBtn.addEventListener('click', async function (evt) {
   elStatNumSets.textContent = statSetNums.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
 
   elRowList.appendChild(listFragment);
-});
+})()
+// });
