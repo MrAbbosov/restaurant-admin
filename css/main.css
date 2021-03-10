@@ -1105,6 +1105,10 @@ img {
   transition: 0.3s all ease;
 }
 
+.add-dish-btn:focus {
+  outline: 0;
+}
+
 .add-dish-btn:hover {
   background: #e9b722;
   color: white;
@@ -1133,9 +1137,7 @@ img {
   /* Stay in place */
   z-index: 1;
   /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
-  left: 0;
+  right: 0;
   top: 0;
   width: 100%;
   /* Full width */
@@ -1151,11 +1153,16 @@ img {
 
 /* Modal Content */
 .modal-content {
-  background-color: #fefefe;
+  position: absolute;
+  width: 500px;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: #1F1D2B;
+  border-radius: 16px 0 0px 16px;
+  color: white;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  padding: 25px;
 }
 
 /* The Close Button */
