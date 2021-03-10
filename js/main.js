@@ -38,6 +38,8 @@ const fetchAllData = async (CONFIG) => {
     $_('.js-product-name', elOrderItem).textContent = order.product_name;
     $_('.js-quantity', elOrderItem).textContent = order.sale_product_count;
     $_('.js-product-price', elOrderItem).textContent = order.product_price;
+    $_('.js-order-confirm', elOrderItem).dataset.saleId = order.sale_id;
+    $_('.js-order-confirm', elOrderItem).dataset.clientId = order.client_id;
     $_('.js-price-summ', elOrderItem).textContent = order.product_price * order.sale_product_count;
     $_('.js-location-link', elOrderItem).href = `https://www.google.com/maps/place/${order.latitude}, ${ order.longitude}`;
     
@@ -51,30 +53,43 @@ const fetchAllData = async (CONFIG) => {
 
 } 
 
-const salom = (info) => {
-  console.log(info);
-}
 
+/*SOCKET*/
 ;(async () => {
-  const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
+  try {
+    const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
 
-  fetchAllData(CONFIG)
+    fetchAllData(CONFIG)
 
-  /*SOCKET*/
-
-  socket.on('new_order', data => {
-      try{
-        fetchAllData(CONFIG)
-      }
-      catch(e) {
-        console.log(e);
-      }
-  })
-
-  /*END OF SOCKET*/
-
-
+    socket.on('new_order', data => {
+        try{
+          fetchAllData(CONFIG)
+        }
+        catch(e) {
+          console.log(e);
+        }
+    })
+  } catch (error) {
+    console.log(error)
+  }
 })()
+/*END OF SOCKET*/
+
+// Change order status
+elRowList.addEventListener('click', async (evt) => {
+  const sale_id = Number(evt.target.dataset.saleId)
+  // const client_id = Number(evt.target.dataset.clientId)
+
+  const changeStatus = await fetch(`${CONFIG.HOST}/admin/order`, {
+    method: 'put',
+    headers: { 'Content-Type': 'application/json' },
+    // body: JSON.stringify({
+    //   user_id: client_id,
+    //   status: statusCode,
+    //   from_status: fromStatus
+    // })
+  })
+})
 
 // var modal = document.getElementById("myModal");
 
