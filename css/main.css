@@ -341,6 +341,38 @@ template {
   display: none;
 }
 
+@font-face {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../fonts/josefin-sans-v17-latin-regular.woff2") format("woff2"), url("../fonts/josefin-sans-v17-latin-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("../fonts/josefin-sans-v17-latin-500.woff2") format("woff2"), url("../fonts/josefin-sans-v17-latin-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../fonts/josefin-sans-v17-latin-600.woff2") format("woff2"), url("../fonts/josefin-sans-v17-latin-600.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../fonts/josefin-sans-v17-latin-700.woff2") format("woff2"), url("../fonts/josefin-sans-v17-latin-700.woff") format("woff");
+}
+
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -364,7 +396,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: "Arial", sans-serif;
+  font-family: "Josefin Sans", "Arial", sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -927,14 +959,7 @@ img {
   background-color: #069506;
 }
 
-.orders-page {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+.settings-page {
   padding: 24px;
   padding-bottom: 12px;
   color: white;
@@ -942,7 +967,7 @@ img {
 
 .add-dishes-heading {
   font-size: 20px;
-  margin: 34px 0 68px 0;
+  margin: 0;
 }
 
 .add-dishes-list {
@@ -962,6 +987,7 @@ img {
 }
 
 .add-dish-item {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -973,31 +999,27 @@ img {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
-  padding: 24px;
-  padding-top: 0;
-  margin: 0 14px 58px 14px;
-  width: 200px;
+  padding: 45px;
+  padding-top: 21px;
+  width: 220px;
   background: #1F1D2B;
-  border-radius: 16px;
-  -webkit-transition: 0.3s all ease;
-  transition: 0.3s all ease;
-}
-
-.add-dish-item:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  border: 1px solid #173BD6;
+  border-radius: 8px;
 }
 
 .add-dish-img {
-  margin-top: -34px;
   vertical-align: middle;
+  width: 132px;
+  height: 132px;
+  margin-bottom: 14px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .add-dish-name {
   font-size: 14px;
   line-height: 130%;
   margin: 0;
-  margin-top: 16px;
   margin-bottom: 8px;
 }
 
@@ -1014,5 +1036,48 @@ img {
   font-size: 14px;
   line-height: 140%;
   margin: 0;
+  margin-bottom: 8px;
+}
+
+.add-dish-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  bottom: 0;
+  left: 0;
+  padding: 16px 0;
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  background: rgba(247, 205, 78, 0.26);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 140%;
+  color: #F7CE4E;
+  border-radius: 0px 0px 8px 8px;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+.add-dish-btn:hover {
+  background: #e9b722;
+  color: white;
+}
+
+.edit-btn-img {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  vertical-align: middle;
 }
 /*# sourceMappingURL=main.css.map */
