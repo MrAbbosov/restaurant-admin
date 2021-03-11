@@ -11,7 +11,7 @@ let $_ = function(selector, node = document) {
 
 const fetchAllData = async (CONFIG) => {
 
-  const res = await fetch(`${CONFIG.PORT}/admin/orders`)
+  const res = await fetch(`${CONFIG.HOST}/admin/orders`)
   const response = await res.json()
 
   elRowList.innerHTML = '';
@@ -55,7 +55,7 @@ const fetchAllData = async (CONFIG) => {
 /*SOCKET*/
 ;(async () => {
   try {
-    const socket = await io(CONFIG.PORT, { transports: ['websocket'] })
+    const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
 
     fetchAllData(CONFIG)
 
@@ -77,40 +77,16 @@ const fetchAllData = async (CONFIG) => {
 elRowList.addEventListener('change', async (evt) => {
   const sale_id = Number(evt.target.dataset.saleId)
 
-  const changeStatus = await fetch(`${CONFIG.PORT}/admin/orders`, {
-    method: 'put',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      sale_id: sale_id,
-      status: evt.target.value
+  try {
+    await fetch(`${CONFIG.HOST}/admin/orders`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sale_id: sale_id,
+        status: evt.target.value
+      })
     })
-  })
-
-  console.log(changeStatus)
+  } catch (error) {
+    console.log(error);
+  }
 })
-
-// var modal = document.getElementById("myModal");
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks the button, open the modal 
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// }
-
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
-

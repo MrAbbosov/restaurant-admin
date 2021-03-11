@@ -81,8 +81,38 @@
   <div id="myModal" class="modal">
 
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
+
+      <img class="close" src="img/Line.png" alt="Arrow" width="16" height="9">
+      <h3 class="modal-heading">Mahsulot qo'shish</h3>
+      <hr class="modal-line">
+
+      <form class="modal-form">
+
+      <ul class="modal-form-list">
+        <li class="modal-list-item">
+          <label class="modal-list-item-heading" for="add-product-modal">Mahsulot nomi</label>
+          <input class="modal-list-item-input" type="text" name="new-product-name" id="add-product-modal" placeholder="Set “KFC”">
+        </li>
+        <li class="modal-list-item">
+          <label class="modal-list-item-heading" for="add-product-modal">Mahsulot narxi</label>
+          <input class="modal-list-item-input" type="number" step="1000" name="new-product-name" id="add-product-modal" placeholder="26000">
+        </li>
+        <li class="modal-list-item">
+          <label class="modal-list-item-heading" for="add-product-modal">Mahsulot rasmi (link)</label>
+          <input class="modal-list-item-input" type="text" name="new-product-name" id="add-product-modal" placeholder="https://telegra.ph/file/1ae81e6cbd8ede307a25b.jpg">
+        </li>
+      </ul>
+
+      <div class="new-product-img-wrapper">
+        <img class="new-product-img" src="https://telegra.ph/file/b67d08636e898595eb6d4.jpg" alt="new-product" width="120" height="120">
+      </div>
+
+      <div class="new-modal-btn-wrapper">
+        <button class="new-modal-btn" type="reset">Bekor qilish</button>
+        <button class="new-modal-btn new-modal-btn-pro">Maqsulot qo’shish</button>
+      </div>
+      </form>
+
     </div>
   
   </div>
@@ -106,7 +136,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.min.js"></script>
   <script src="./js/config.js"></script> 
   <script src="./js/moment.js"></script> 
-  <script src="./js/main.js"></script>
+  <script src="./js/settings.js"></script>
   
 </body>
 </html>

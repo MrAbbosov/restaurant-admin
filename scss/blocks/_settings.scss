@@ -57,15 +57,15 @@
   width: 100%;
   height: 100%;
   transition: all 0.3s ease;
-
+  
   &:focus {
     outline: 0;
   }
-
+  
   &:hover {
     transform: scale(1.1);
   }
-
+  
   &:active {
     transform: scale(1);
   }
@@ -119,7 +119,7 @@
   color: #F7CE4E;
   border-radius: 0px 0px 6px 6px;
   transition: 0.3s all ease;
-
+  
   &:focus {
     outline: 0;
   }
@@ -144,7 +144,7 @@
   transition: 0.3s all ease;
 }
 
-
+// Modal styles
 
 .modal {
   display: none; /* Hidden by default */
@@ -159,7 +159,6 @@
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
 .modal-content {
   position: absolute;
   width: 500px;
@@ -169,16 +168,25 @@
   background: #1F1D2B;
   border-radius: 16px 0 0px 16px;
   color: white;
-  margin: auto;
+  // margin: auto;
   padding: 25px;
 }
 
-/* The Close Button */
+.modal-line {
+  width: 100%;
+}
+
 .close {
   color: #aaaaaa;
-  float: right;
   font-size: 28px;
   font-weight: bold;
+  vertical-align: middle;
+  object-fit: contain;
+  transition: 0.3s all ease;
+  
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .close:hover,
@@ -186,4 +194,88 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-heading {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 24px;
+  line-height: 140%;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-form-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 16px;
+}
+
+.modal-list-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.modal-list-item-heading {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;  
+  margin-bottom: 8px;
+}
+
+.modal-list-item-input {
+  padding: 12px;
+  background: #2D303E;  
+  border: 1px solid #173BD6;
+  color: white;
+  box-sizing: border-box;
+  border-radius: 8px;  
+
+  &:hover,
+  &:focus {
+    outline: none;
+
+  }
+}
+
+
+.new-product-img-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 25px;
+  flex-grow: 1;
+}
+.new-product-img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  border: 1px dashed #F7CE4E;
+}
+
+.new-modal-btn-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.new-modal-btn {
+  background: none;
+  border: none;
+  width: 200px;
+  padding: 14px;
+  font-weight: bold;
+  border: 1px solid #F7CE4E;
+  color: #F7CE4E;
+  border-radius: 8px;  
+  cursor: pointer;
+}
+.new-modal-btn-pro {
+
+  background-color: #F7CE4E;
+  color: #000;
 }
