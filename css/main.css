@@ -1056,8 +1056,9 @@ img {
   width: 132px;
   height: 132px;
   margin-bottom: 14px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  border-radius: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .add-dish-name {
@@ -1155,7 +1156,7 @@ img {
   width: 500px;
   top: 0;
   right: 0;
-  height: 100%;
+  min-height: 100%;
   background: #1F1D2B;
   border-radius: 16px 0 0px 16px;
   color: white;
@@ -1245,6 +1246,10 @@ img {
   outline: none;
 }
 
+.item-input-textarea {
+  resize: vertical;
+}
+
 .new-product-img-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1260,10 +1265,11 @@ img {
 }
 
 .new-product-img {
-  display: block;
   width: 120px;
   height: 120px;
   border-radius: 8px;
+  -o-object-fit: contain;
+     object-fit: contain;
   border: 1px dashed #F7CE4E;
 }
 
