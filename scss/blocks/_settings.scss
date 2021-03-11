@@ -101,49 +101,80 @@
   margin-bottom: 16px;
 }
 
+.add-new-product-button-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .add-dish-btn {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   bottom: 0;
-  left: 0;
   padding: 16px 0;
   position: absolute;
   background: none;
   border: none;
   cursor: pointer;
+  color: #F7CE4E;
   width: 100%;
-  background: rgba(247, 205, 78, 0.26);
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
-  color: #F7CE4E;
-  border-radius: 0px 0px 6px 6px;
+ 
   transition: 0.3s all ease;
   
   &:focus {
     outline: 0;
   }
-  
-  &:hover {
-    background: #e9b722;
-    color: white;
-    
-    svg {
-      fill: white;
-    }
-  }
 }
 
 .edit-btn-img {
-  width: 15px;
-  height: 15px;
   margin-right: 8px;
   object-fit: contain;
   vertical-align: middle;
   fill: #F7CE4E;
   transition: 0.3s all ease;
 }
+
+.add-dish-delate-btn {
+  object-fit: contain;
+  fill: #f74e4e;
+  transition: 0.3s all ease;
+}
+
+.js-add-dish-btn {
+  width: 70%;
+  background: rgba(247, 205, 78, 0.26);
+  border-radius: 0px 0px 0px 6px;
+  left: 0;
+  
+  &:hover {
+    background: #e9b722;
+    color: white;
+    
+    .edit-btn-img {
+      fill: white;
+    }
+  }
+}
+.js-add-dish-delate-btn {
+  width: 30%;
+  background: rgba(247, 112, 78, 0.26);
+  border-radius: 0px 0px 6px 0px;
+  right: 0;
+
+  &:hover {
+    background: #fb3737;
+    
+    .add-dish-delate-btn {
+      fill: white;
+    }
+  }
+}
+
 
 // Modal styles
 

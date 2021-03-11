@@ -1077,6 +1077,19 @@ img {
   margin-bottom: 16px;
 }
 
+.add-new-product-button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .add-dish-btn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1088,19 +1101,16 @@ img {
       -ms-flex-pack: center;
           justify-content: center;
   bottom: 0;
-  left: 0;
   padding: 16px 0;
   position: absolute;
   background: none;
   border: none;
   cursor: pointer;
+  color: #F7CE4E;
   width: 100%;
-  background: rgba(247, 205, 78, 0.26);
   font-weight: 600;
   font-size: 14px;
   line-height: 140%;
-  color: #F7CE4E;
-  border-radius: 0px 0px 6px 6px;
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
 }
@@ -1109,18 +1119,7 @@ img {
   outline: 0;
 }
 
-.add-dish-btn:hover {
-  background: #e9b722;
-  color: white;
-}
-
-.add-dish-btn:hover svg {
-  fill: white;
-}
-
 .edit-btn-img {
-  width: 15px;
-  height: 15px;
   margin-right: 8px;
   -o-object-fit: contain;
      object-fit: contain;
@@ -1128,6 +1127,45 @@ img {
   fill: #F7CE4E;
   -webkit-transition: 0.3s all ease;
   transition: 0.3s all ease;
+}
+
+.add-dish-delate-btn {
+  -o-object-fit: contain;
+     object-fit: contain;
+  fill: #f74e4e;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+.js-add-dish-btn {
+  width: 70%;
+  background: rgba(247, 205, 78, 0.26);
+  border-radius: 0px 0px 0px 6px;
+  left: 0;
+}
+
+.js-add-dish-btn:hover {
+  background: #e9b722;
+  color: white;
+}
+
+.js-add-dish-btn:hover .edit-btn-img {
+  fill: white;
+}
+
+.js-add-dish-delate-btn {
+  width: 30%;
+  background: rgba(247, 112, 78, 0.26);
+  border-radius: 0px 0px 6px 0px;
+  right: 0;
+}
+
+.js-add-dish-delate-btn:hover {
+  background: #fb3737;
+}
+
+.js-add-dish-delate-btn:hover .add-dish-delate-btn {
+  fill: white;
 }
 
 .modal {

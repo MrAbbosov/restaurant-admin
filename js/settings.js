@@ -80,6 +80,7 @@ const fetchNewProductData = async (CONFIG) => {
     $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
     $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
     $_('.js-add-dish-btn', elProductItem).dataset.productId = product.product_id;
+    $_('.js-add-dish-delate-btn', elProductItem).dataset.deleteProductId = product.product_id;
   
     listNewFragment.appendChild(elProductItem);
   })
@@ -88,6 +89,31 @@ const fetchNewProductData = async (CONFIG) => {
 } 
 
 fetchNewProductData(CONFIG)
+
+// Delate Products
+
+elDishesList.addEventListener('click', async (evt) => {
+  const product_id = Number(evt.target.dataset.deleteProductId)
+
+  try {
+    if(evt.target.dataset.deleteProductId) {
+
+      const res = await fetch(`${CONFIG.HOST}/admin/product`, {
+        method: 'delete',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: product_id
+        })
+      })
+
+      console.log(await res.json())
+  
+      location.reload();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 
 
