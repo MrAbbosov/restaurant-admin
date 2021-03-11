@@ -468,14 +468,17 @@ img {
 }
 
 .site_logo {
-  -webkit-box-shadow: 0px 0px 10px #FFFFFF;
-          box-shadow: 0px 0px 10px #FFFFFF;
+  /*-webkit-box-shadow: 0px 0px 10px #FFFFFF;
+          box-shadow: 0px 0px 10px #FFFFFF;*/
   border-radius: 12px;
+  border: 2px solid #f7ce4e;
 }
 
+
+
 .site_logo-link:hover .site_logo {
-  -webkit-box-shadow: 0px 0px 15px #FFFFFF;
-          box-shadow: 0px 0px 15px #FFFFFF;
+  -webkit-box-shadow: 0px 0px 0px 10px #252836;
+          box-shadow: 0px 0px 0px 10px #252836;
 }
 
 .site_logo-link {

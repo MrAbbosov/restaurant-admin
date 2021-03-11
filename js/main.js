@@ -11,7 +11,7 @@ let $_ = function(selector, node = document) {
 
 const fetchAllData = async (CONFIG) => {
 
-  const res = await fetch(`${CONFIG.HOST}/admin/orders`)
+  const res = await fetch(`${CONFIG.PORT}/admin/orders`)
   const response = await res.json()
 
   elRowList.innerHTML = '';
@@ -30,7 +30,6 @@ const fetchAllData = async (CONFIG) => {
     statPrice += order.product_price * order.sale_product_count;
     statSetNums += order.sale_product_count;
 
-
     $_('.js-user-id', elOrderItem).textContent = order.sale_id;
     $_('.js-date', elOrderItem).textContent = moment(order.sale_date).format('MM.DD h:mm:ss a');
     $_('.js-client-username', elOrderItem).textContent = order.tg_first_name;
@@ -38,8 +37,8 @@ const fetchAllData = async (CONFIG) => {
     $_('.js-product-name', elOrderItem).textContent = order.product_name;
     $_('.js-quantity', elOrderItem).textContent = order.sale_product_count;
     $_('.js-product-price', elOrderItem).textContent = order.product_price;
-    $_('.js-order-confirm', elOrderItem).dataset.saleId = order.sale_id;
-    $_('.js-order-confirm', elOrderItem).dataset.clientId = order.client_id;
+    $_('.js-order-status', elOrderItem).dataset.saleId = order.sale_id;
+    $_('.js-order-status', elOrderItem).value = order.sale_status;
     $_('.js-price-summ', elOrderItem).textContent = order.product_price * order.sale_product_count;
     $_('.js-location-link', elOrderItem).href = `https://www.google.com/maps/place/${order.latitude}, ${ order.longitude}`;
     
@@ -53,11 +52,10 @@ const fetchAllData = async (CONFIG) => {
 
 } 
 
-
 /*SOCKET*/
 ;(async () => {
   try {
-    const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
+    const socket = await io(CONFIG.PORT, { transports: ['websocket'] })
 
     fetchAllData(CONFIG)
 
@@ -76,19 +74,19 @@ const fetchAllData = async (CONFIG) => {
 /*END OF SOCKET*/
 
 // Change order status
-elRowList.addEventListener('click', async (evt) => {
+elRowList.addEventListener('change', async (evt) => {
   const sale_id = Number(evt.target.dataset.saleId)
-  // const client_id = Number(evt.target.dataset.clientId)
 
-  const changeStatus = await fetch(`${CONFIG.HOST}/admin/order`, {
+  const changeStatus = await fetch(`${CONFIG.PORT}/admin/orders`, {
     method: 'put',
     headers: { 'Content-Type': 'application/json' },
-    // body: JSON.stringify({
-    //   user_id: client_id,
-    //   status: statusCode,
-    //   from_status: fromStatus
-    // })
+    body: JSON.stringify({
+      sale_id: sale_id,
+      status: evt.target.value
+    })
   })
+
+  console.log(changeStatus)
 })
 
 // var modal = document.getElementById("myModal");

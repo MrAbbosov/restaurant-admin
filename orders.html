@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buyurtmalar</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body class="site_body">
   
@@ -174,8 +174,16 @@
       <td class="js-quantity"></td>
       <td class="js-product-price"></td>
       <td class="js-price-summ"></td>
-      <td><a target="blank" class="location-link js-location-link">Map</a></td>
-      <td><button class="status-button  js-order-confirm">Qabul</button></td>
+      <td><a target="blank" class="location-link js-location-link">Manzil</a></td>
+      <td class="lock lock-on">
+        <select class="js-order-status">
+          <option disabled value="1">Kutishda...</option>
+          <option value="2">Pishirishda</option>
+          <option value="3">Yetkazishda</option>
+          <option value="4">Bajarildi</option>
+          <option value="5">Bekor qilindi</option>
+        </select>
+      </td>
     </tr>  
   </template>
   
