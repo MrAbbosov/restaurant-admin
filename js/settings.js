@@ -32,14 +32,10 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
 
 
-elNewProductImg.addEventListener("change", (evt)=> {
+
+elNewProductImg.addEventListener("blur", (evt)=> {
   evt.preventDefault()
   elNewProductPreview.src = evt.target.value
 })
@@ -134,11 +130,28 @@ async function deleteProductFunc (evt) {
   }
 }
 
+
+const fetchEditData = async (CONFIG) => {
+  const res = await fetch(`${CONFIG.HOST}/admin/products`)
+  const response = res.json()
+  return response
+} 
+
 // EDIT PRODUCTS
-function editProductFunc(evt) {
+async function editProductFunc(evt) {
   const product_id = Number(evt.currentTarget.dataset.editProductId);
-  elNewProductForm.dataset.productId = product_id;
+
+  const fetchingData = await fetchEditData(CONFIG)
+  const dataOfSelectedItem = fetchingData.data.find( dataItem =>(dataItem.product_id === product_id))
+  
   editModal.style.display = "block";
+  
+  elAddNewProductName.value = dataOfSelectedItem.product_name
+  elAddNewProductPrice.value = dataOfSelectedItem.product_price
+  elNewProductImg.value = dataOfSelectedItem.product_image
+  elNewProductPreview.src = dataOfSelectedItem.product_image
+  elAddNewProductTextarea.value = dataOfSelectedItem.product_info
+  
 }
 
 
@@ -154,6 +167,10 @@ editSpan.onclick = function() {
 window.onclick = function(event) {
   if (event.target == editModal) {
     editModal.style.display = "none";
+  }
+
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
 }
 
