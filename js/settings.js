@@ -16,6 +16,7 @@ const elAddNewProductTextarea = elNewProductForm.querySelector('.js-item-input-t
 const elAddNewProductBtn = elNewProductForm.querySelector('.js-add-new-product-btn');
 
 const elTemplateNewProduct = document.querySelector('#add-new-dish-template').content;
+const elAddignBtn = document.querySelector('#adding_btn').content;
 
 
 // SELECT MODAL ELEMENTS
@@ -33,11 +34,16 @@ let meals = [];
 const renderMeals = (meals) => {
   elDishesList.innerHTML = ``;
   const listNewFragment = document.createDocumentFragment();
+  let addButtonOfList = elAddignBtn.cloneNode(true).querySelector(`.add-dish-button-wrapper`);
+
+  elDishesList.appendChild(addButtonOfList);
+
+  addButtonOfList.addEventListener("click", handleAddMealClick)
+  
   meals.sort(function(a, b) {
     return a.product_id - b.product_id;
   }).forEach((product) => {
     let elProductItem = elTemplateNewProduct.cloneNode(true);
-    
     $_('.js-add-dish-img', elProductItem).src = product.product_image;
     $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
     $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
@@ -49,9 +55,11 @@ const renderMeals = (meals) => {
     listNewFragment.appendChild(elProductItem);
   })
   elDishesList.appendChild(listNewFragment);
-}
+};
 
-modalBtn.onclick = function() {
+const handleAddMealClick = function() {
+  elNewProductForm.reset();
+  elNewProductPreview.src = `https://panor.ru/img/default/category.png`;
   elNewProductForm.dataset.type = FormTypes.Create;
   modal.style.display = "block";
 }
@@ -91,11 +99,11 @@ const editMeal = async () => {
 
     const response = await res.json()
 
-    
     elNewProductForm.reset()
     modal.style.display = "none";
+
     const editedProductIndex = meals.findIndex(meal => meal.product_id === editedProductId - 0);
-    console.log(editedProductIndex);
+
     await console.log(response);
     await meals.splice(editedProductIndex, 1, response.data[0]);
     await renderMeals(meals)
