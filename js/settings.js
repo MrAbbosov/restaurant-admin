@@ -14,7 +14,6 @@ const elNewProductImg = elNewProductForm.querySelector('.js-new-product-img');
 const elNewProductPreview = elNewProductForm.querySelector('.js-new-product-preview');
 const elAddNewProductTextarea = elNewProductForm.querySelector('.js-item-input-textarea');
 const elAddNewProductBtn = elNewProductForm.querySelector('.js-add-new-product-btn');
-const editModal = document.getElementById("edit_modal");
 
 const elTemplateNewProduct = document.querySelector('#add-new-dish-template').content;
 
@@ -24,72 +23,19 @@ const modal = document.getElementById("myModal");
 const modalBtn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 
-modalBtn.onclick = function() {
-  modal.style.display = "block";
-}
+const FormTypes = {
+  Edit: `edit`,
+  Create: `create`
+};
 
-span.onclick = function() {
-  modal.style.display = "none";
-}
+let meals = [];
 
-
-
-
-elNewProductImg.addEventListener("blur", (evt)=> {
-  evt.preventDefault()
-  elNewProductPreview.src = evt.target.value
-})
-
-
-
-//ADD NEW PRODUCT
-elNewProductForm.addEventListener("submit", async (evt)=> {
-  evt.preventDefault()
-
-  try {
-    const newProduct = await fetch(`${CONFIG.HOST}/admin/product`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: elAddNewProductName.value,
-        price: elAddNewProductPrice.value,
-        image: elNewProductImg.value,
-        info: elAddNewProductTextarea.value
-      })
-    })
-    const res = await newProduct.json()
-    
-    res.data.forEach((product) => {
-      let elProductItem = elTemplateNewProduct.cloneNode(true);
-      
-      $_('.js-add-dish-img', elProductItem).src = product.product_image;
-      $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
-      $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
-      $_('.js-edit-dish-btn', elProductItem).dataset.editProductId = product.product_id;
-      $_('.js-edit-dish-btn', elProductItem).onclick = editProductFunc;
-      $_('.js-delete-dish-btn', elProductItem).dataset.deleteProductId = product.product_id;
-      $_('.js-delete-dish-btn', elProductItem).onclick = deleteProductFunc;
-      
-      elDishesList.appendChild(elProductItem);
-    })
-    
-    elNewProductForm.reset()
-    modal.style.display = "none";
-  } catch (error) {
-    console.log(error);
-  }
-})
-
-
-
-// RENDER PRODUCTS
-const fetchNewProductData = async (CONFIG) => {
-  const res = await fetch(`${CONFIG.HOST}/admin/products`)
-  const response = await res.json()
-  
-  let listNewFragment = document.createDocumentFragment();
-  
-  response.data.forEach((product) => {
+const renderMeals = (meals) => {
+  elDishesList.innerHTML = ``;
+  const listNewFragment = document.createDocumentFragment();
+  meals.sort(function(a, b) {
+    return a.product_id - b.product_id;
+  }).forEach((product) => {
     let elProductItem = elTemplateNewProduct.cloneNode(true);
     
     $_('.js-add-dish-img', elProductItem).src = product.product_image;
@@ -103,6 +49,119 @@ const fetchNewProductData = async (CONFIG) => {
     listNewFragment.appendChild(elProductItem);
   })
   elDishesList.appendChild(listNewFragment);
+}
+
+modalBtn.onclick = function() {
+  elNewProductForm.dataset.type = FormTypes.Create;
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+
+elNewProductImg.addEventListener("blur", (evt)=> {
+  evt.preventDefault()
+  elNewProductPreview.src = evt.target.value
+})
+
+const editMeal = async () => {
+  try {
+    const editedProductId = elAddNewProductBtn.dataset.editId;
+    const res = await fetch(`${CONFIG.HOST}/admin/product`, {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: editedProductId,
+        name: elAddNewProductName.value,
+        price: elAddNewProductPrice.value,
+        image: elNewProductImg.value,
+        info: elAddNewProductTextarea.value,
+        status: 1
+      })
+    })
+
+    const response = await res.json()
+
+    
+    elNewProductForm.reset()
+    modal.style.display = "none";
+    const editedProductIndex = meals.findIndex(meal => meal.product_id === editedProductId - 0);
+    console.log(editedProductIndex);
+    await console.log(response);
+    await meals.splice(editedProductIndex, 1, response.data[0]);
+    await renderMeals(meals)
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const addMeal = async () => {
+  try {
+    console.log("NEW");
+    const newProduct = await fetch(`${CONFIG.HOST}/admin/product`, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: elAddNewProductName.value,
+        price: elAddNewProductPrice.value,
+        image: elNewProductImg.value,
+        info: elAddNewProductTextarea.value
+      })
+    })
+    const res = await newProduct.json()
+    
+    if (res.data.length > 0) {
+      res.data.forEach((product) => {
+        let elProductItem = elTemplateNewProduct.cloneNode(true);
+        
+        $_('.js-add-dish-img', elProductItem).src = product.product_image;
+        $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
+        $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
+        $_('.js-edit-dish-btn', elProductItem).dataset.editProductId = product.product_id;
+        $_('.js-edit-dish-btn', elProductItem).onclick = editProductFunc;
+        $_('.js-delete-dish-btn', elProductItem).dataset.deleteProductId = product.product_id;
+        $_('.js-delete-dish-btn', elProductItem).onclick = deleteProductFunc;
+        
+        elDishesList.appendChild(elProductItem);
+      })
+    }
+    
+    elNewProductForm.reset()
+    modal.style.display = "none";
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//ADD NEW PRODUCT
+elNewProductForm.addEventListener("submit", async (evt)=> {
+  evt.preventDefault()
+  
+  if (evt.currentTarget.dataset.type === FormTypes.Create) {
+    addMeal();
+  } else if (evt.currentTarget.dataset.type === FormTypes.Edit) {
+    editMeal();
+  }
+})
+
+
+
+// RENDER PRODUCTS
+const fetchNewProductData = async (CONFIG) => {
+  const res = await fetch(`${CONFIG.HOST}/admin/products`)
+  const response = await res.json()
+  
+  meals = await response.data;
+  await renderMeals(meals);
 } 
 fetchNewProductData(CONFIG)
 
@@ -121,7 +180,7 @@ async function deleteProductFunc (evt) {
           id: product_id
         })
       })
-
+      
       location.reload()
     }
     
@@ -137,65 +196,22 @@ const fetchEditData = async (CONFIG) => {
   return response
 } 
 
+
 // EDIT PRODUCTS
 async function editProductFunc(evt) {
   const product_id = Number(evt.currentTarget.dataset.editProductId);
-
+  
   const fetchingData = await fetchEditData(CONFIG)
   const dataOfSelectedItem = fetchingData.data.find( dataItem =>(dataItem.product_id === product_id))
+  elNewProductForm.dataset.type = FormTypes.Edit;
   
-  editModal.style.display = "block";
+  modal.style.display = "block";
   
   elAddNewProductName.value = dataOfSelectedItem.product_name
   elAddNewProductPrice.value = dataOfSelectedItem.product_price
   elNewProductImg.value = dataOfSelectedItem.product_image
   elNewProductPreview.src = dataOfSelectedItem.product_image
   elAddNewProductTextarea.value = dataOfSelectedItem.product_info
-  
+  elAddNewProductBtn.dataset.editId = product_id
 }
 
-
-// EDIT MODAL 
-let editModalBtn = document.querySelector(".js-add-dish-btn");
-let editSpan = document.getElementsByClassName("close-arrow")[0];
-
-
-editSpan.onclick = function() {
-  editModal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == editModal) {
-    editModal.style.display = "none";
-  }
-
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-// elNewProductForm.addEventListener("submit", async (evt) => {
-//   evt.preventDefault();
-
-//   try {
-//     if(evt.currentTarget.dataset.editProductId) {
-//       console.log('this is edit')
-
-//       const res = await fetch(`${CONFIG.HOST}/admin/product`, {
-//         method: 'put',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({
-//           id: product_id,
-//           name: elAddNewProductName.value,
-//           price: elAddNewProductPrice.value,
-//           image: elNewProductImg.value,
-//           info: elAddNewProductTextarea.value,
-//           // status: 
-//         })
-//       })
-
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// })
