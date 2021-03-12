@@ -44,6 +44,7 @@ const renderMeals = (meals) => {
     return a.product_id - b.product_id;
   }).forEach((product) => {
     let elProductItem = elTemplateNewProduct.cloneNode(true);
+    elProductItem.querySelector(`.add-dish-item`).id = `product-${product.product_id}`
     $_('.js-add-dish-img', elProductItem).src = product.product_image;
     $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
     $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
@@ -104,7 +105,6 @@ const editMeal = async () => {
 
     const editedProductIndex = meals.findIndex(meal => meal.product_id === editedProductId - 0);
 
-    await console.log(response);
     await meals.splice(editedProductIndex, 1, response.data[0]);
     await renderMeals(meals)
   } catch (error) {
@@ -127,24 +127,11 @@ const addMeal = async () => {
     })
     const res = await newProduct.json()
     
-    if (res.data.length > 0) {
-      res.data.forEach((product) => {
-        let elProductItem = elTemplateNewProduct.cloneNode(true);
-        
-        $_('.js-add-dish-img', elProductItem).src = product.product_image;
-        $_('.js-add-dish-name', elProductItem).textContent = product.product_name;
-        $_('.js-add-dish-price', elProductItem).textContent = product.product_price;
-        $_('.js-edit-dish-btn', elProductItem).dataset.editProductId = product.product_id;
-        $_('.js-edit-dish-btn', elProductItem).onclick = editProductFunc;
-        $_('.js-delete-dish-btn', elProductItem).dataset.deleteProductId = product.product_id;
-        $_('.js-delete-dish-btn', elProductItem).onclick = deleteProductFunc;
-        
-        elDishesList.appendChild(elProductItem);
-      })
-    }
-    
+    meals.push(res.data[0]) 
     elNewProductForm.reset()
     modal.style.display = "none";
+    await renderMeals(meals)
+
   } catch (error) {
     console.log(error);
   }
@@ -169,7 +156,7 @@ const fetchNewProductData = async (CONFIG) => {
   const response = await res.json()
   
   meals = await response.data;
-  await renderMeals(meals);
+  await renderMeals(meals)
 } 
 fetchNewProductData(CONFIG)
 
@@ -177,21 +164,21 @@ fetchNewProductData(CONFIG)
 
 // DELATE PRODUCTS
 async function deleteProductFunc (evt) {
-  const product_id = evt.currentTarget.dataset.deleteProductId
+  const productId = evt.currentTarget.dataset.deleteProductId
   try {
-    if(product_id) {
+    if(productId) {
       
       const res = await fetch(`${CONFIG.HOST}/admin/product`, {
         method: 'delete',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: product_id
+          id: productId
         })
       })
       
-      location.reload()
+      await document.querySelector(`#product-${productId}`).remove();
+
     }
-    
   } catch (error) {
     console.log(error);
   }
