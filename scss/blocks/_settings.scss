@@ -37,7 +37,7 @@
   margin-right: 10px;
   margin-bottom: 20px;
   width: 220px;
-  min-height: 250px;
+  min-height: 300px;
   background: #1F1D2B;
   border: 1px solid #173BD6;
   border-radius: 8px;
@@ -146,7 +146,7 @@
   transition: 0.3s all ease;
 }
 
-.js-add-dish-btn {
+.edit-dish-btn {
   width: 70%;
   background: rgba(247, 205, 78, 0.26);
   border-radius: 0px 0px 0px 6px;
@@ -161,7 +161,8 @@
     }
   }
 }
-.js-add-dish-delate-btn {
+
+.delete-dish-btn {
   width: 30%;
   background: rgba(247, 112, 78, 0.26);
   border-radius: 0px 0px 6px 0px;
