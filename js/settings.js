@@ -49,7 +49,7 @@ elNewProductImg.addEventListener("change", (evt)=> {
 //ADD NEW PRODUCT
 elNewProductForm.addEventListener("submit", async (evt)=> {
   evt.preventDefault()
-  
+
   try {
     const newProduct = await fetch(`${CONFIG.HOST}/admin/product`, {
       method: 'post',
@@ -63,7 +63,6 @@ elNewProductForm.addEventListener("submit", async (evt)=> {
     })
     const res = await newProduct.json()
     
-
     res.data.forEach((product) => {
       let elProductItem = elTemplateNewProduct.cloneNode(true);
       
@@ -85,8 +84,9 @@ elNewProductForm.addEventListener("submit", async (evt)=> {
   }
 })
 
-// RENDER PRODUCTS
 
+
+// RENDER PRODUCTS
 const fetchNewProductData = async (CONFIG) => {
   const res = await fetch(`${CONFIG.HOST}/admin/products`)
   const response = await res.json()
@@ -108,20 +108,15 @@ const fetchNewProductData = async (CONFIG) => {
   })
   elDishesList.appendChild(listNewFragment);
 } 
-
 fetchNewProductData(CONFIG)
 
-// Delete Products
-// elNewProductForm.addEventListener("click", (evt) => {
-//   evt.preventDefault()
-//   const product_id = Number(evt.target.dataset.deleteProductId)
 
-// })
 
+// DELATE PRODUCTS
 async function deleteProductFunc (evt) {
+  const product_id = evt.currentTarget.dataset.deleteProductId
   try {
-    if(evt.target.dataset.deleteProductId) {
-      console.log('this is delete')
+    if(product_id) {
       
       const res = await fetch(`${CONFIG.HOST}/admin/product`, {
         method: 'delete',
@@ -130,8 +125,8 @@ async function deleteProductFunc (evt) {
           id: product_id
         })
       })
-      
-      location.reload()      
+
+      location.reload()
     }
     
   } catch (error) {
@@ -139,7 +134,7 @@ async function deleteProductFunc (evt) {
   }
 }
 
-// Edit product
+// EDIT PRODUCTS
 function editProductFunc(evt) {
   const product_id = Number(evt.currentTarget.dataset.editProductId);
   elNewProductForm.dataset.productId = product_id;
