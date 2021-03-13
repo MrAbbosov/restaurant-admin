@@ -13,6 +13,11 @@ const fetchAllData = async (CONFIG) => {
 
   const res = await fetch(`${CONFIG.HOST}/admin/orders`)
   const response = await res.json()
+  
+  const resClients = await fetch(`${CONFIG.HOST}/admin/clients`)
+  const responseClients = await resClients.json()
+  const clientsNumber = await responseClients.data[0].clients_number
+  elStatAllCustomers.textContent = clientsNumber
 
   elRowList.innerHTML = '';
   elStatPrice.innerHTML = '';
