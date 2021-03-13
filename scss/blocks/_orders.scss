@@ -177,6 +177,29 @@
 .col-5 {
   width: 15%;
 }
+.col-10 {
+  width: 12%;
+}
+
+.order-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 99%;
+  line-height: 40px;
+  font-weight: 600;
+  padding: 14px 4px;
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  option {
+    font-size: 20px;
+  }
+}
+
+
 
 .table-body td {
   font-weight: bold;

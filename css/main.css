@@ -896,6 +896,35 @@ img {
   width: 15%;
 }
 
+.col-10 {
+  width: 12%;
+}
+
+.order-status {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 99%;
+  line-height: 40px;
+  font-weight: 600;
+  padding: 14px 4px;
+}
+
+.order-status:hover, .order-status:focus {
+  outline: none;
+}
+
+.order-status option {
+  font-size: 20px;
+}
+
 .table-body td {
   font-weight: bold;
   line-height: 25px;

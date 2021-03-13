@@ -86,6 +86,7 @@ elRowList.addEventListener('change', async (evt) => {
         status: evt.target.value
       })
     })
+
   } catch (error) {
     console.log(error);
   }
