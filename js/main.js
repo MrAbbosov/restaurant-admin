@@ -9,6 +9,12 @@ let $_ = function(selector, node = document) {
   return node.querySelector(selector);
 }
 
+// const fetchAllData = async (CONFIG) => {
+//   const res = await fetch(`${CONFIG.HOST}/admin/top-orders`)
+//   const response = await res.json()
+//   console.log(response);
+// }
+
 const fetchAllData = async (CONFIG) => {
 
   const res = await fetch(`${CONFIG.HOST}/admin/orders`)
@@ -43,6 +49,7 @@ const fetchAllData = async (CONFIG) => {
     $_('.js-quantity', elOrderItem).textContent = order.sale_product_count;
     $_('.js-product-price', elOrderItem).textContent = order.product_price;
     $_('.js-order-status', elOrderItem).dataset.saleId = order.sale_id;
+    $_('.js-order-status', elOrderItem).dataset.clientId = order.client_id;
     $_('.js-order-status', elOrderItem).value = order.sale_status;
     $_('.js-price-summ', elOrderItem).textContent = order.product_price * order.sale_product_count;
     $_('.js-location-link', elOrderItem).href = `https://www.google.com/maps/place/${order.latitude}, ${ order.longitude}`;
@@ -59,40 +66,54 @@ const fetchAllData = async (CONFIG) => {
 
 /*SOCKET*/
 ;(async () => {
+  const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
   try {
-    const socket = await io(CONFIG.HOST, { transports: ['websocket'] })
 
     fetchAllData(CONFIG)
 
-    socket.on('new_order', data => {
-        try{
-          fetchAllData(CONFIG)
+    socket.on('new_order', ({ data }) => {
+          if (data.length > 0) {
+          try{
+            fetchAllData(CONFIG)
+          }
+          catch(e) {
+            console.log(e);
+          }
         }
-        catch(e) {
-          console.log(e);
+      })
+    } catch (error) {
+      console.log(error)
+    }
+
+    elRowList.addEventListener('change', async (evt) => {
+      const sale_id = Number(evt.target.dataset.saleId)
+      const client_id = Number(evt.target.dataset.clientId)
+      
+      try {
+        const body = {
+          sale_id: sale_id,
+          status: evt.target.value
         }
+
+        const socketBody = {
+          sale_id: sale_id,
+          client_id: client_id,
+          status: evt.target.value
+        }
+    
+        await fetch(`${CONFIG.HOST}/admin/orders`, {
+          method: 'put',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+    
+        socket.emit('order_edited', socketBody)
+    
+      } catch (error) {
+        console.log(error);
+      }
     })
-  } catch (error) {
-    console.log(error)
-  }
 })()
 /*END OF SOCKET*/
 
 // Change order status
-elRowList.addEventListener('change', async (evt) => {
-  const sale_id = Number(evt.target.dataset.saleId)
-
-  try {
-    await fetch(`${CONFIG.HOST}/admin/orders`, {
-      method: 'put',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        sale_id: sale_id,
-        status: evt.target.value
-      })
-    })
-
-  } catch (error) {
-    console.log(error);
-  }
-})

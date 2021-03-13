@@ -900,6 +900,10 @@ img {
   width: 12%;
 }
 
+.col-11 {
+  width: 5%;
+}
+
 .order-status {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1365,4 +1369,9 @@ img {
 .new-modal-btn-pro {
   background-color: #F7CE4E;
   color: #000;
+}
+
+.filtered-page {
+  padding: 20px;
+  width: 100%;
 }
