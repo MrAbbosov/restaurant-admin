@@ -5,15 +5,38 @@ let elStatAllCustomers = document.querySelector('.js-statistics-all-customers');
 let elRowList = document.querySelector('.row-body');
 let elTemplate = document.querySelector('#row').content;
 
+let elMostOrderedList = document.querySelector('.most-ordered-list');
+let elMostOrderedItem = document.querySelector('#most_ordered_item').content;
+
+
+
 let $_ = function(selector, node = document) {
   return node.querySelector(selector);
 }
 
-// const fetchAllData = async (CONFIG) => {
-//   const res = await fetch(`${CONFIG.HOST}/admin/top-orders`)
-//   const response = await res.json()
-//   console.log(response);
-// }
+const fetchMostOrdered = async (CONFIG) => {
+  const res = await fetch(`${CONFIG.HOST}/admin/top-orders`)
+  const response = await res.json()
+
+  let listFragment = document.createDocumentFragment();
+  elMostOrderedList.innerHTML = '';
+
+   
+  response.data.forEach((order) => {
+    let elMostOrderedItem = elTemplate.cloneNode(true);
+
+
+    $_('.js-most-ordered-img', elMostOrderedItem).src = order.product_image;
+    $_('.js-most-ordered-heading', elMostOrderedItem).textContent = order.product_name;
+    $_('.js-most-ordered-subheading', elMostOrderedItem).textContent = order.product_count;
+ 
+    
+    listFragment.prepend(elMostOrderedItem);
+  })
+  elMostOrderedList.appendChild(listFragment);
+}
+
+fetchMostOrdered(CONFIG)
 
 const fetchAllData = async (CONFIG) => {
 
@@ -61,7 +84,6 @@ const fetchAllData = async (CONFIG) => {
   elStatNumSets.textContent = statSetNums.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")
 
   elRowList.appendChild(listFragment);
-
 } 
 
 /*SOCKET*/

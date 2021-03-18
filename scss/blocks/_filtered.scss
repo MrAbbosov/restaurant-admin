@@ -2,3 +2,56 @@
   padding: 20px;
   width: 100%;
 }
+.col-1 {
+  width: 8%;
+}
+.js-client-name {
+  width: 200px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.col-21 {
+  width: 8%;
+}
+.col-32 {
+  width: 20%;
+}
+.col-23 {
+  width: 15%;
+}
+.col-24 {
+  width: 10%;
+}
+.col-25 {
+  width: 10%;
+}
+.col-26 {
+  width: 10%;
+}
+.col-27 {
+  width: 10%;
+}
+.col-28 {
+  width: 15%;
+}
+
+.location-link {
+  margin: 4px 3px;
+  border-radius: 8px;
+}
+
+.order_select{
+  width: 96%;
+  padding: 11px;
+  font-size: 18px;
+  border-radius: 8px;
+  text-align: center;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+} 
