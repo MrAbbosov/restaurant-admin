@@ -75,8 +75,53 @@ font-size: 18px;
   color: white;
   font-size: 20px;
 }
+
 .order_section-user-info-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 50px;
+}
+
+.order_item-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.order_item-delivery-price,
+.order_item-products-price {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.order_item-total-price{
+  align-self: center;
+  margin: 10px 0;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #0040b6;
+  border-radius: 8px;
+  padding: 10px 30px;
+}
+
+.order_item-selection {
+    width: 100%;
+    padding: 11px;
+    font-size: 20px;
+    border-radius: 8px;
+    text-align: center;
+  
+    &:focus,
+    &:active {
+      outline: none;
+    }
+}
+
+.order_location_link {
+  margin: 0;
+  margin-top: 8px;
+  font-size: 20px;
+  text-align: center;
 }
