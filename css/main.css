@@ -1377,10 +1377,6 @@ img {
   width: 100%;
 }
 
-.col-1 {
-  width: 8%;
-}
-
 .js-client-name {
   width: 200px;
   max-width: 250px;
@@ -1436,4 +1432,80 @@ img {
 
 .order_select:focus, .order_select:active {
   outline: none;
+}
+
+.order_info {
+  padding: 20px;
+  width: 100%;
+}
+
+.order_info_inner {
+  background-color: #f5f4f4;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.order_section-heading {
+  margin: 0;
+  padding: 0;
+}
+
+.col-41 {
+  width: 8%;
+  background-color: #e90000;
+}
+
+.col-42 {
+  width: 20%;
+  background-color: #18be02;
+}
+
+.order_item-img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 12px;
+  vertical-align: middle;
+  margin: 5px 0;
+}
+
+.order_section-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.order_section-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.order_section-bottom-left {
+  width: 60%;
+}
+
+.order-table {
+  width: 100%;
+}
+
+.order_table-tbody {
+  font-size: 18px;
+}
+
+.order_section-bottom-right {
+  width: 38%;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #4d4d4d;
 }

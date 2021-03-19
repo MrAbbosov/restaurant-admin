@@ -2,9 +2,7 @@
   padding: 20px;
   width: 100%;
 }
-.col-1 {
-  width: 8%;
-}
+
 .js-client-name {
   width: 200px;
   max-width: 250px;
@@ -55,3 +53,9 @@
     outline: none;
   }
 } 
+
+.order_select {
+  // appearance:none;
+  // -moz-appearance:none;
+  // -webkit-appearance:none;
+}
